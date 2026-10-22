@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+/* Charte Nuance (voir 01_prompt-claude-design.md) */
+:root {
+  --creme: #faf6f0;
+  --sable: #f1e5d6;
+  --carte: #fffdf9;
+  --bordure: #e6d9ca;
+  --encre: #2b1d14;
+  --encre-douce: #5c4b40;
+  --terracotta: #a84e2e; /* version foncée du terracotta, lisible avec du texte blanc (WCAG AA) */
+  --terracotta-clair: #c2603d;
+  --sauge: #7a8b6f;
+  --sauge-fonce: #56664c;
+  --or: #c9a24b;
+}
+
+@theme inline {
+  --color-creme: var(--creme);
+  --color-sable: var(--sable);
+  --color-carte: var(--carte);
+  --color-bordure: var(--bordure);
+  --color-encre: var(--encre);
+  --color-encre-douce: var(--encre-douce);
+  --color-terracotta: var(--terracotta);
+  --color-terracotta-clair: var(--terracotta-clair);
+  --color-sauge: var(--sauge);
+  --color-sauge-fonce: var(--sauge-fonce);
+  --color-or: var(--or);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+}
+
+body {
+  background: var(--creme);
+  color: var(--encre);
+}
