@@ -137,6 +137,6 @@ export const rechercheCourte = (piece: Piece) => RECHERCHE_COURTE[piece.id] ?? p
 // Neutres reconnus dans les palettes : ils servent pour les bas et les chaussures.
 const NEUTRES = [
   "Blanc", "Crème", "Ivoire", "Beige", "Camel", "Taupe", "Gris", "Anthracite", "Noir", "Marine", "Chocolat",
-  "Brun", "Kaki", "Olive", "Bleu jean", "Bleu marine",
+  "Brun", "Kaki", "Olive", "Bleu jean", "Bleu marine", "Argent",
 ];
 export const estNeutre = (nom: string) => NEUTRES.some((n) => nom.toLowerCase().includes(n.toLowerCase()));
