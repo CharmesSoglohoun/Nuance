@@ -1,3 +1,4 @@
+import { BarreNavigation } from "@/components/BarreNavigation";
 import { Suspense } from "react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -8,12 +9,15 @@ export const metadata = { title: "Mon espace · Nuance" };
 
 export default function MonEspace() {
   return (
-    <main className="mx-auto flex min-h-dvh w-full max-w-md flex-col gap-6 px-6 pt-10 pb-10">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sauge-fonce">Mon espace</p>
-      <Suspense fallback={<p className="text-[15px] text-encre-douce">Chargement de ton espace…</p>}>
-        <Espace />
-      </Suspense>
-    </main>
+    <>
+      <main className="mx-auto flex min-h-dvh w-full max-w-md flex-col gap-6 px-6 pt-10 pb-28">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sauge-fonce">Mon espace</p>
+        <Suspense fallback={<p className="text-[15px] text-encre-douce">Chargement de ton espace…</p>}>
+          <Espace />
+        </Suspense>
+      </main>
+      <BarreNavigation />
+    </>
   );
 }
 

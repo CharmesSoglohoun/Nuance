@@ -1,12 +1,12 @@
 "use client";
 
-import { useMemo, useState, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { SAISONS, type Saison } from "@/data/catalogue";
 import { paletteFor } from "@/data/palettes";
 import { Mannequin2D } from "@/components/Mannequin2D";
 import { LIBELLES_SLOT, changerPiece, genererTenue, lookPour, type Slot, type Tenue } from "@/lib/tenues";
-import { basculerTenueAimee, estAimee } from "@/lib/favoris";
+import { basculerTenueAimee, estAimee, synchroniser } from "@/lib/favoris";
 import { saisonActuelle } from "@/lib/couleursPiece";
 import { lireProfil, type ProfilStyle } from "@/lib/profil";
 
@@ -30,6 +30,11 @@ export function Studio() {
   const [tenueModifiee, setTenueModifiee] = useState<Tenue | null>(null);
   const [aimeeMaj, setAimeeMaj] = useState(0); // force le rafraîchissement du cœur
   const [changements, setChangements] = useState(0); // fait varier la pièce proposée à chaque « Changer »
+
+  // Récupère les tenues aimées sur d'autres appareils (si la personne est connectée).
+  useEffect(() => {
+    synchroniser().then(() => setAimeeMaj((n) => n + 1));
+  }, []);
 
   if (brut === null) return <p className="text-[15px] text-encre-douce">Chargement du Studio…</p>;
   if (!profil) {

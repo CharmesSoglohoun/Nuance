@@ -1,3 +1,4 @@
+import { BarreNavigation } from "@/components/BarreNavigation";
 import { notFound } from "next/navigation";
 import { PIECES } from "@/data/catalogue";
 import { FichePiece } from "./FichePiece";
@@ -19,8 +20,11 @@ export default async function PagePiece({ params }: PageProps<"/pieces/[id]">) {
   if (!piece) notFound();
 
   return (
-    <main className="mx-auto flex min-h-dvh w-full max-w-md flex-col gap-5 px-5 pt-3 pb-10">
-      <FichePiece piece={piece} />
-    </main>
+    <>
+      <main className="mx-auto flex min-h-dvh w-full max-w-md flex-col gap-5 px-5 pt-3 pb-28">
+        <FichePiece piece={piece} />
+      </main>
+      <BarreNavigation />
+    </>
   );
 }

@@ -7,6 +7,7 @@ import { boutiquesPour, TYPES_BOUTIQUE } from "@/data/boutiques";
 import { STYLES, lireProfil, type ProfilStyle } from "@/lib/profil";
 import { couleursPour } from "@/lib/couleursPiece";
 import { IllustrationPiece } from "@/components/IllustrationPiece";
+import { basculerPieceAimee, estPieceAimee, lirePiecesAimees } from "@/lib/favoris";
 
 const abonner = () => () => {};
 const profilBrut = () => {
@@ -24,8 +25,14 @@ export function FichePiece({ piece }: { piece: Piece }) {
   const brut = useSyncExternalStore(abonner, profilBrut, () => null);
   const profil = useMemo<ProfilStyle>(() => (brut ? JSON.parse(brut) : PROFIL_PAR_DEFAUT), [brut]);
   const couleurs = couleursPour(piece, profil);
-  const [indice, setIndice] = useState(0);
+  const [indiceChoisi, setIndice] = useState<number | null>(null);
   const [copie, setCopie] = useState(false);
+  const [version, setVersion] = useState(0); // relit les favoris après un clic sur le cœur
+  const aimee = brut !== null && version >= 0 && estPieceAimee(piece.id);
+  // Si la pièce a été aimée dans une couleur, la fiche s'ouvre sur cette couleur.
+  const couleurAimee = brut !== null ? lirePiecesAimees().find((p) => p.pieceId === piece.id)?.couleur : undefined;
+  const indiceAime = couleurs.findIndex((c) => c.nom === couleurAimee);
+  const indice = indiceChoisi ?? (indiceAime >= 0 ? indiceAime : 0);
   const couleur = couleurs[Math.min(indice, couleurs.length - 1)];
   const motsCles = `${piece.motsCles} ${couleur.nom.toLowerCase()}`;
   const boutiques = boutiquesPour(piece.categorie, piece.genre, profil.boutiques).slice(0, 4);
@@ -43,10 +50,26 @@ export function FichePiece({ piece }: { piece: Piece }) {
 
   return (
     <>
-      <Link href="/pieces" className="-ml-1.5 inline-flex h-11 w-fit items-center gap-1 text-[15px] font-semibold">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>
-        Les pièces
-      </Link>
+      <div className="flex items-center justify-between">
+        <Link href="/pieces" className="-ml-1.5 inline-flex h-11 w-fit items-center gap-1 text-[15px] font-semibold">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>
+          Les pièces
+        </Link>
+        <button
+          type="button"
+          aria-pressed={aimee}
+          aria-label={aimee ? "Retirer de mes pièces" : "Ajouter à mes pièces"}
+          onClick={() => {
+            basculerPieceAimee(piece.id, couleur);
+            setVersion(version + 1);
+          }}
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-carte text-terracotta shadow-[0_2px_8px_rgba(43,29,20,0.12)]"
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill={aimee ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z" />
+          </svg>
+        </button>
+      </div>
 
       <figure role="img" aria-label={`Illustration : ${piece.nom}, coloris ${couleur.nom}`} className="m-0 flex h-60 shrink-0 items-center justify-center rounded-3xl bg-sable">
         <IllustrationPiece piece={piece} couleur={couleur.hex} taille={200} />
