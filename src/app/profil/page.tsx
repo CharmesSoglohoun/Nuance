@@ -1,12 +1,7 @@
-import { BientotDisponible } from "@/components/BientotDisponible";
+import { TestCouleurs } from "./TestCouleurs";
 
-export const metadata = { title: "Ton profil · Nuance" };
+export const metadata = { title: "Mon test de couleurs · Nuance" };
 
 export default function Profil() {
-  return (
-    <BientotDisponible
-      titre="Parlons de ta silhouette"
-      texte="Le test en 3 étapes (silhouette, teint et sous-ton, goûts) arrive dans la prochaine version."
-    />
-  );
+  return <TestCouleurs />;
 }

@@ -33,12 +33,15 @@ async function Espace() {
         </p>
       </header>
       <section className="flex flex-col gap-2 rounded-2xl bg-carte p-5 shadow-[0_4px_14px_rgba(43,29,20,0.06)]">
-        <h2 className="text-[16px] font-semibold">Prochaine étape</h2>
+        <h2 className="text-[16px] font-semibold">Mes couleurs</h2>
         <p className="text-[14px] leading-relaxed text-encre-douce">
-          Bientôt ici : ton test de couleurs, ta palette, tes tenues et tes pièces favorites.
+          Ta palette est enregistrée dans ton compte dès que tu fais le test en étant connecté. Bientôt ici : tes tenues et tes pièces favorites.
         </p>
-        <Link href="/profil" className="mt-1 text-[15px] font-semibold text-terracotta underline">
-          Découvrir mes couleurs
+        <Link href="/ma-palette" className="mt-1 text-[15px] font-semibold text-terracotta underline">
+          Voir ma palette
+        </Link>
+        <Link href="/profil" className="text-[15px] font-semibold text-terracotta underline">
+          Faire ou refaire le test de couleurs
         </Link>
       </section>
       <form action={seDeconnecter}>
