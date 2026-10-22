@@ -7,8 +7,17 @@ const PAGES_PRIVEES = ["/moi"];
 // Le proxy passe avant chaque page : il rafraîchit la session Supabase si elle a expiré,
 // pour que le navigateur et le serveur restent d'accord sur « qui est connecté ».
 export async function proxy(request: NextRequest) {
-  const { url, key } = supabaseEnv();
   let response = NextResponse.next({ request });
+
+  // Sans les clés Supabase (projet mal configuré), on laisse passer plutôt que de casser tout le site.
+  let env: ReturnType<typeof supabaseEnv>;
+  try {
+    env = supabaseEnv();
+  } catch {
+    console.error("Proxy : variables Supabase absentes, session non vérifiée.");
+    return response;
+  }
+  const { url, key } = env;
 
   const supabase = createServerClient(url, key, {
     cookies: {

@@ -5,8 +5,10 @@ import { supabaseEnv } from "./env";
 
 // Client Supabase côté serveur (pages, actions, routes). Il lit la session dans les cookies.
 export async function createClient() {
-  const { url, key } = supabaseEnv();
+  // cookies() d'abord : pendant la compilation, Next.js s'arrête ici (contenu propre à chaque visiteur)
+  // et ne demande donc pas les clés, qui ne sont utiles qu'au moment de la vraie requête.
   const cookieStore = await cookies();
+  const { url, key } = supabaseEnv();
 
   return createServerClient(url, key, {
     cookies: {
