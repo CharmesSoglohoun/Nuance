@@ -4,7 +4,14 @@ import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { SAISONS, type Saison } from "@/data/catalogue";
 import { paletteFor } from "@/data/palettes";
+import dynamic from "next/dynamic";
 import { Mannequin2D } from "@/components/Mannequin2D";
+
+// La 3D ne se charge que dans le navigateur ; en attendant, un espace vide de la même taille.
+const Mannequin3D = dynamic(() => import("@/components/Mannequin3D").then((m) => m.Mannequin3D), {
+  ssr: false,
+  loading: () => <div className="flex h-full items-center justify-center text-sm text-encre-douce">Chargement du mannequin 3D…</div>,
+});
 import { LIBELLES_SLOT, changerPiece, genererTenue, lookPour, type Slot, type Tenue } from "@/lib/tenues";
 import { basculerTenueAimee, estAimee, synchroniser } from "@/lib/favoris";
 import { saisonActuelle } from "@/lib/couleursPiece";
@@ -106,11 +113,22 @@ export function Studio() {
         >
           <Coeur plein={aimee} />
         </button>
-        <div className="relative -mt-2">
-          <Mannequin2D look={lookPour(tenue, profil)} width={152} height={320} />
+        <div className="absolute inset-0">
+          <Mannequin3D
+            look={lookPour(tenue, profil)}
+            silhouette={profil.silhouette}
+            tailleCm={profil.tailleCm}
+            hauteur={372}
+            repli={
+              <div className="flex h-full items-center justify-center">
+                <Mannequin2D look={lookPour(tenue, profil)} width={152} height={320} />
+              </div>
+            }
+          />
         </div>
-        <p className="absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-[rgba(255,253,249,0.92)] px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap text-encre-douce">
-          Mannequin 3D à 360° : bientôt
+        <p className="pointer-events-none absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full bg-[rgba(255,253,249,0.92)] px-3.5 py-2 text-[13px] font-semibold whitespace-nowrap shadow-[0_2px_8px_rgba(43,29,20,0.12)]">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7" /><path d="M21 3v6h-6" /></svg>
+          360° · Fais glisser pour tourner
         </p>
       </section>
 
