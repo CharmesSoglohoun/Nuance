@@ -1,0 +1,47 @@
+import { createServerClient } from "@supabase/ssr";
+import { NextResponse, type NextRequest } from "next/server";
+import { supabaseEnv } from "@/lib/supabase/env";
+
+const PAGES_PRIVEES = ["/moi"];
+
+// Le proxy passe avant chaque page : il rafraîchit la session Supabase si elle a expiré,
+// pour que le navigateur et le serveur restent d'accord sur « qui est connecté ».
+export async function proxy(request: NextRequest) {
+  const { url, key } = supabaseEnv();
+  let response = NextResponse.next({ request });
+
+  const supabase = createServerClient(url, key, {
+    cookies: {
+      getAll() {
+        return request.cookies.getAll();
+      },
+      setAll(cookiesToSet, headers) {
+        cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
+        response = NextResponse.next({ request });
+        cookiesToSet.forEach(({ name, value, options }) => response.cookies.set(name, value, options));
+        // Une réponse qui pose des cookies de session ne doit jamais être mise en cache.
+        Object.entries(headers ?? {}).forEach(([name, value]) => response.headers.set(name, value));
+      },
+    },
+  });
+
+  // getClaims vérifie la signature du jeton : c'est ce qui déclenche le rafraîchissement.
+  const { data } = await supabase.auth.getClaims();
+
+  // Pages réservées aux personnes connectées : on renvoie vers la connexion avant d'afficher quoi que ce soit.
+  const pagePrivee = PAGES_PRIVEES.some((p) => request.nextUrl.pathname.startsWith(p));
+  if (pagePrivee && !data?.claims) {
+    const versConnexion = NextResponse.redirect(new URL("/connexion", request.url));
+    response.cookies.getAll().forEach((c) => versConnexion.cookies.set(c));
+    return versConnexion;
+  }
+
+  return response;
+}
+
+export const config = {
+  matcher: [
+    // Tout sauf les fichiers statiques, les images et les icônes
+    "/((?!_next/static|_next/image|favicon.ico|manifest.webmanifest|.*\\.(?:png|jpg|jpeg|svg|webp|ico)$).*)",
+  ],
+};

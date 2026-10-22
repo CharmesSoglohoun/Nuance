@@ -7,7 +7,8 @@ import type { NextConfig } from "next";
 // En local, on le charge depuis là. En ligne, Vercel fournit les variables lui-même (ce dossier n'existe pas).
 const workspaceRoot = path.resolve(process.cwd(), "../../../..");
 if (existsSync(path.join(workspaceRoot, ".env"))) {
-  loadEnvConfig(workspaceRoot);
+  // forceReload : Next.js a déjà chargé (et mis en cache) les .env du dossier app, qui n'en a pas.
+  loadEnvConfig(workspaceRoot, process.env.NODE_ENV !== "production", undefined, true);
 }
 
 const nextConfig: NextConfig = {
