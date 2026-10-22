@@ -117,10 +117,13 @@ export function MaPalette() {
       <EtatSauvegarde etat={sauvegarde} />
 
       <div className="flex flex-col gap-2">
+        <Link href="/pieces" className="flex h-14 items-center justify-center rounded-2xl bg-terracotta text-[17px] font-semibold text-white">
+          Voir mes pièces de saison
+        </Link>
         <Link href="/profil" className="flex h-12 items-center justify-center rounded-2xl border-2 border-terracotta font-semibold text-terracotta">
           Refaire le test de couleurs
         </Link>
-        <p className="text-center text-xs text-[#6b5a4e]">Les tenues de la saison arrivent dans la prochaine version.</p>
+        <p className="text-center text-xs text-[#6b5a4e]">Les tenues complètes sur ton mannequin arrivent dans une prochaine version.</p>
       </div>
     </>
   );
