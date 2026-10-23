@@ -13,7 +13,7 @@ const profilBrut = () => {
   return p ? JSON.stringify(p) : "";
 };
 
-type Sauvegarde = "verification" | "invite" | "enregistre" | "erreur";
+type Sauvegarde = "verification" | "invite" | "a-confirmer" | "en-cours" | "enregistre" | "erreur";
 
 export function MaPalette() {
   const brut = useSyncExternalStore(abonner, profilBrut, () => null);
@@ -21,7 +21,8 @@ export function MaPalette() {
   const [indice, setIndice] = useState(0);
   const [sauvegarde, setSauvegarde] = useState<Sauvegarde>("verification");
 
-  // Si la personne est connectée, on enregistre son profil dans son compte (RLS : seulement sa ligne).
+  // Le profil contient le teint (donnée potentiellement sensible, RGPD) : il n'est enregistré dans le compte
+  // qu'après un accord explicite. Ici, on regarde seulement si la personne est connectée et si c'est déjà fait.
   useEffect(() => {
     if (!profil) return;
     const supabase = createClient();
@@ -30,10 +31,21 @@ export function MaPalette() {
         setSauvegarde("invite");
         return;
       }
-      const { error } = await supabase.from("profiles").upsert(versLigneSupabase(data.user.id, profil));
-      setSauvegarde(error ? "erreur" : "enregistre");
+      const { data: ligne } = await supabase.from("profiles").select("teint, sous_ton, silhouette").maybeSingle();
+      const aJour = ligne && ligne.teint === profil.teint && ligne.sous_ton === profil.sousTon && ligne.silhouette === profil.silhouette;
+      setSauvegarde(aJour ? "enregistre" : "a-confirmer");
     });
   }, [profil]);
+
+  const enregistrer = async () => {
+    if (!profil) return;
+    setSauvegarde("en-cours");
+    const supabase = createClient();
+    const { data } = await supabase.auth.getUser();
+    if (!data.user) return setSauvegarde("invite");
+    const { error } = await supabase.from("profiles").upsert(versLigneSupabase(data.user.id, profil));
+    setSauvegarde(error ? "erreur" : "enregistre");
+  };
 
   if (brut === null) return <p className="text-[15px] text-encre-douce">Chargement de ta palette…</p>;
 
@@ -114,7 +126,7 @@ export function MaPalette() {
         <p className="text-sm leading-relaxed text-[#33402d]">{palette.pourquoi}</p>
       </section>
 
-      <EtatSauvegarde etat={sauvegarde} />
+      <EtatSauvegarde etat={sauvegarde} enregistrer={enregistrer} />
 
       <div className="flex flex-col gap-2">
         <Link href="/studio" className="flex h-14 items-center justify-center rounded-2xl bg-terracotta text-[17px] font-semibold text-white">
@@ -135,7 +147,21 @@ function Etiquette({ children }: { children: React.ReactNode }) {
   return <span className="inline-flex h-7 items-center gap-1.5 rounded-full bg-[#f3e3d8] px-3 text-[13px] font-medium">{children}</span>;
 }
 
-function EtatSauvegarde({ etat }: { etat: Sauvegarde }) {
+function EtatSauvegarde({ etat, enregistrer }: { etat: Sauvegarde; enregistrer: () => void }) {
+  if (etat === "a-confirmer" || etat === "en-cours") {
+    return (
+      <div className="flex flex-col gap-2.5 rounded-2xl border-2 border-bordure bg-carte p-4">
+        <p className="text-sm font-semibold">Garder ta palette dans ton compte ?</p>
+        <p className="text-[13px] leading-relaxed text-encre-douce">
+          Ton profil (dont ton teint) sera enregistré dans ton compte pour retrouver ta palette sur tous tes appareils. Il ne sert qu’à tes conseils de couleurs et n’est jamais partagé. Tu pourras l’effacer à tout moment depuis Profil.{" "}
+          <Link href="/confidentialite" className="font-semibold text-terracotta underline">En savoir plus</Link>
+        </p>
+        <button type="button" onClick={enregistrer} disabled={etat === "en-cours"} className="h-12 rounded-xl bg-terracotta font-semibold text-white disabled:opacity-60">
+          {etat === "en-cours" ? "Enregistrement…" : "Enregistrer ma palette dans mon compte"}
+        </button>
+      </div>
+    );
+  }
   if (etat === "enregistre") {
     return <p className="rounded-xl bg-[#eef1ea] p-3 text-sm text-[#33402d]">✓ Ta palette est enregistrée dans ton compte.</p>;
   }

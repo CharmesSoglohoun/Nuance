@@ -2,7 +2,9 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { supabaseEnv } from "@/lib/supabase/env";
 
-const PAGES_PRIVEES = ["/moi"];
+// Pages réservées aux personnes connectées. « /moi » (onglet Profil) est ouvert à tous :
+// sans compte, on y voit son profil gardé sur le téléphone et une invitation à se connecter.
+const PAGES_PRIVEES: string[] = [];
 
 // Le proxy passe avant chaque page : il rafraîchit la session Supabase si elle a expiré,
 // pour que le navigateur et le serveur restent d'accord sur « qui est connecté ».
