@@ -1,14 +1,14 @@
 import { Contact, PageLegale } from "@/components/PageLegale";
 import { EDITEUR, MISE_A_JOUR } from "@/data/legal";
 
-export const metadata = { title: "Mentions légales · Nuance" };
+export const metadata = { title: "Mentions légales · Charmes" };
 
 export default function MentionsLegales() {
   return (
     <PageLegale titre="Mentions légales" miseAJour={MISE_A_JOUR}>
       <section>
         <h2>Éditeur</h2>
-        <p>Nuance est un projet personnel, non commercial, édité par {EDITEUR} (étudiant, Rennes). Contact : <Contact />.</p>
+        <p>Charmes est un projet personnel, non commercial, édité par {EDITEUR} (étudiant, Rennes). Contact : <Contact />.</p>
       </section>
 
       <section>
@@ -24,7 +24,7 @@ export default function MentionsLegales() {
       <section>
         <h2>Contenus et marques</h2>
         <p>
-          Les palettes, les fiches de pièces, les textes et les illustrations de Nuance sont propres au projet. Les noms de boutiques cités (Zara, H&amp;M, Celio, Zalando, Decathlon, Etsy, Spartoo, Vinted) appartiennent à leurs propriétaires respectifs ; ils sont mentionnés uniquement pour t’aider à trouver une pièce, sans partenariat ni rémunération.
+          Les palettes, les fiches de pièces, les textes et les illustrations de Charmes sont propres au projet. Les noms de boutiques cités (Zara, H&amp;M, Celio, Zalando, Decathlon, Etsy, Spartoo, Vinted) appartiennent à leurs propriétaires respectifs ; ils sont mentionnés uniquement pour t’aider à trouver une pièce, sans partenariat ni rémunération.
         </p>
       </section>
 

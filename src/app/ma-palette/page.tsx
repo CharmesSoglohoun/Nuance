@@ -1,7 +1,7 @@
 import { BarreNavigation } from "@/components/BarreNavigation";
 import { MaPalette } from "./MaPalette";
 
-export const metadata = { title: "Ma palette · Nuance" };
+export const metadata = { title: "Ma palette · Charmes" };
 
 export default function PageMaPalette() {
   return (

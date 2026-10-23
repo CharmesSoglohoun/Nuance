@@ -11,7 +11,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/pieces/[id]">) {
   const { id } = await params;
   const piece = PIECES.find((p) => p.id === id);
-  return { title: piece ? `${piece.nom} · Nuance` : "Pièce introuvable · Nuance" };
+  return { title: piece ? `${piece.nom} · Charmes` : "Pièce introuvable · Charmes" };
 }
 
 export default async function PagePiece({ params }: PageProps<"/pieces/[id]">) {

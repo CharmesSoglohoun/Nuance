@@ -1,4 +1,4 @@
-// Moteur de tenues de Nuance : des règles simples, sans IA payante.
+// Moteur de tenues de Charmes : des règles simples, sans IA payante.
 // Une tenue = haut (ou robe) + bas (sauf robe) + chaussures + pièce en plus (selon la saison).
 // Règles de couleur (cahier des charges, section 7) :
 //  - une base neutre + une seule couleur d'accent ;

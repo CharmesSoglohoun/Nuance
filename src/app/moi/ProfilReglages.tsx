@@ -14,7 +14,7 @@ const profilBrut = () => {
   return p ? JSON.stringify(p) : "";
 };
 
-// Toutes les clés que Nuance garde sur le téléphone.
+// Toutes les clés que Charmes garde sur le téléphone.
 const CLES_LOCALES = ["nuance:profil", "nuance:tenues-aimees", "nuance:pieces-aimees"];
 
 export function ProfilReglages() {
@@ -38,7 +38,7 @@ export function ProfilReglages() {
       compte = { email: u.user.email, cree_le: u.user.created_at, profil: profilDb.data, tenues_aimees: tenues.data, pieces_aimees: pieces.data };
     }
     const donnees = {
-      application: "Nuance",
+      application: "Charmes",
       exporte_le: new Date().toISOString(),
       sur_ce_telephone: { profil: lireProfil(), tenues_aimees: lireTenuesAimees(), pieces_aimees: lirePiecesAimees() },
       dans_mon_compte: compte,
@@ -46,7 +46,7 @@ export function ProfilReglages() {
     const blob = new Blob([JSON.stringify(donnees, null, 2)], { type: "application/json" });
     const lien = document.createElement("a");
     lien.href = URL.createObjectURL(blob);
-    lien.download = `nuance-mes-donnees-${new Date().toISOString().slice(0, 10)}.json`;
+    lien.download = `charmes-mes-donnees-${new Date().toISOString().slice(0, 10)}.json`;
     lien.click();
     URL.revokeObjectURL(lien.href);
     setEtat("repos");
@@ -122,7 +122,7 @@ export function ProfilReglages() {
       <section aria-labelledby="confidentialite" className="flex flex-col gap-2.5 rounded-2xl bg-carte p-4 shadow-[0_4px_14px_rgba(43,29,20,0.06)]">
         <h2 id="confidentialite" className="text-base font-semibold">Confidentialité</h2>
         <p className="text-[13px] leading-relaxed text-encre-douce">
-          Nuance ne garde que ce qui sert à te conseiller : ton profil de style et tes favoris. Pas de photo, pas de publicité, pas de revente.
+          Charmes ne garde que ce qui sert à te conseiller : ton profil de style et tes favoris. Pas de photo, pas de publicité, pas de revente.
         </p>
         <button type="button" onClick={telecharger} disabled={etat === "export"} className="h-12 rounded-xl border-2 border-bordure text-[15px] font-semibold disabled:opacity-60">
           {etat === "export" ? "Préparation de tes données…" : "Télécharger mes données"}

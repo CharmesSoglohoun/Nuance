@@ -1,5 +1,5 @@
 -- =====================================================================
--- Nuance : favoris adaptés au catalogue (qui vit dans le code de l'appli)
+-- Charmes : favoris adaptés au catalogue (qui vit dans le code de l'appli)
 -- À exécuter une seule fois dans Supabase > SQL Editor, après 0001.
 -- Les pièces sont désormais identifiées par un texte (ex. « h-chino ») et non plus
 -- par une ligne de la table products. Les règles de sécurité (RLS) restent actives.

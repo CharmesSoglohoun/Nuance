@@ -1,18 +1,18 @@
 import { Contact, PageLegale } from "@/components/PageLegale";
 import { EDITEUR, MISE_A_JOUR } from "@/data/legal";
 
-export const metadata = { title: "Politique de confidentialité · Nuance" };
+export const metadata = { title: "Politique de confidentialité · Charmes" };
 
 export default function Confidentialite() {
   return (
     <PageLegale titre="Politique de confidentialité" miseAJour={MISE_A_JOUR}>
       <p>
-        Nuance t’aide à trouver les couleurs et les tenues qui te mettent en valeur. Cette page explique, simplement, quelles données sont utilisées, pourquoi, et comment tu gardes la main dessus.
+        Charmes t’aide à trouver les couleurs et les tenues qui te mettent en valeur. Cette page explique, simplement, quelles données sont utilisées, pourquoi, et comment tu gardes la main dessus.
       </p>
 
       <section>
         <h2>Qui est responsable ?</h2>
-        <p>{EDITEUR}, à l’origine de Nuance (projet personnel en cours de développement, Rennes). Contact : <Contact />.</p>
+        <p>{EDITEUR}, à l’origine de Charmes (projet personnel en cours de développement, Rennes). Contact : <Contact />.</p>
       </section>
 
       <section>
@@ -22,7 +22,7 @@ export default function Confidentialite() {
           <li><strong>Tes favoris</strong> : tenues et pièces que tu as aimées, avec leur couleur.</li>
           <li><strong>Ton adresse e-mail</strong>, seulement si tu crées un compte (pour te connecter).</li>
         </ul>
-        <p>Nuance ne demande <strong>aucune photo</strong>, aucune donnée bancaire, et n’affiche aucune publicité.</p>
+        <p>Charmes ne demande <strong>aucune photo</strong>, aucune donnée bancaire, et n’affiche aucune publicité.</p>
       </section>
 
       <section>
@@ -54,12 +54,12 @@ export default function Confidentialite() {
 
       <section>
         <h2>Cookies</h2>
-        <p>Nuance utilise seulement les cookies nécessaires pour rester connecté. Aucun cookie publicitaire ni de mesure d’audience.</p>
+        <p>Charmes utilise seulement les cookies nécessaires pour rester connecté. Aucun cookie publicitaire ni de mesure d’audience.</p>
       </section>
 
       <section>
         <h2>Liens vers les boutiques</h2>
-        <p>Les boutons « Chercher » ouvrent le site d’une boutique (Zara, H&amp;M, Vinted…). Nuance ne leur transmet aucune donnée personnelle : seuls les mots-clés de la pièce sont envoyés. Sur leur site, c’est leur propre politique de confidentialité qui s’applique. Nuance n’a aucun partenariat avec ces boutiques.</p>
+        <p>Les boutons « Chercher » ouvrent le site d’une boutique (Zara, H&amp;M, Vinted…). Charmes ne leur transmet aucune donnée personnelle : seuls les mots-clés de la pièce sont envoyés. Sur leur site, c’est leur propre politique de confidentialité qui s’applique. Charmes n’a aucun partenariat avec ces boutiques.</p>
       </section>
 
       <section>

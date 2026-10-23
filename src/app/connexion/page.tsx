@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { FormulaireConnexion } from "./FormulaireConnexion";
 
-export const metadata = { title: "Connexion · Nuance" };
+export const metadata = { title: "Connexion · Charmes" };
 
 export default function Connexion() {
   return (

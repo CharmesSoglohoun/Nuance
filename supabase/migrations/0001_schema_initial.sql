@@ -1,5 +1,5 @@
 -- =====================================================================
--- Nuance : structure initiale de la base (MVP)
+-- Charmes : structure initiale de la base (MVP)
 -- À exécuter une seule fois dans Supabase > SQL Editor.
 --
 -- Principe de sécurité (RLS = Row Level Security) :

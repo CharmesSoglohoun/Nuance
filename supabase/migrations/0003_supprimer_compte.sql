@@ -1,5 +1,5 @@
 -- =====================================================================
--- Nuance : suppression de compte par la personne elle-même (RGPD, droit à l'effacement)
+-- Charmes : suppression de compte par la personne elle-même (RGPD, droit à l'effacement)
 -- À exécuter une seule fois dans Supabase > SQL Editor, après 0002.
 --
 -- La fonction efface UNIQUEMENT le compte de la personne connectée qui l'appelle (auth.uid()).

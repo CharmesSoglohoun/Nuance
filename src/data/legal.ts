@@ -1,4 +1,4 @@
-// Informations légales de Nuance (mentions légales et politique de confidentialité).
+// Informations légales de Charmes (mentions légales et politique de confidentialité).
 export const EDITEUR = "Charmes SOGLOHOUN";
 // Adresse e-mail de contact pour les questions et les droits RGPD (à confirmer par Charmes avant les tests).
 export const CONTACT_EMAIL = "";

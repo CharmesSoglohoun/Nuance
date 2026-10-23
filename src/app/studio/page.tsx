@@ -1,7 +1,7 @@
 import { BarreNavigation } from "@/components/BarreNavigation";
 import { Studio } from "./Studio";
 
-export const metadata = { title: "Studio · Nuance" };
+export const metadata = { title: "Studio · Charmes" };
 
 export default function PageStudio() {
   return (

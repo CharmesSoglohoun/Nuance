@@ -5,7 +5,7 @@ import { createClient } from "@/lib/supabase/server";
 import { seDeconnecter } from "../connexion/actions";
 import { ProfilReglages } from "./ProfilReglages";
 
-export const metadata = { title: "Profil et réglages · Nuance" };
+export const metadata = { title: "Profil et réglages · Charmes" };
 
 export default function PageProfil() {
   return (
@@ -32,7 +32,7 @@ async function Compte() {
     return (
       <section className="flex flex-col gap-2 rounded-2xl border-2 border-dashed border-bordure p-4">
         <p className="text-sm leading-relaxed text-encre-douce">
-          Tu utilises Nuance sans compte : ton profil et tes favoris sont gardés sur ce téléphone uniquement.
+          Tu utilises Charmes sans compte : ton profil et tes favoris sont gardés sur ce téléphone uniquement.
         </p>
         <Link href="/connexion" className="text-[15px] font-semibold text-terracotta underline">
           Me connecter ou créer mon compte

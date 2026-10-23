@@ -26,7 +26,7 @@ export default function Accueil() {
     <main className="mx-auto flex min-h-dvh w-full max-w-md flex-col gap-6 px-6 pt-14 pb-8">
       <header className="flex flex-col items-center gap-3 text-center">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sauge-fonce">Ton conseil en style</p>
-        <h1 className="font-serif text-6xl font-semibold leading-none tracking-tight">Nuance</h1>
+        <h1 className="font-serif text-6xl font-semibold leading-none tracking-tight">Charmes</h1>
         <p className="max-w-[300px] text-[17px] leading-relaxed text-encre-douce">
           Les couleurs qui te vont, la tenue de la saison, et où la trouver.
         </p>

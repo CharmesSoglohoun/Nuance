@@ -2,7 +2,7 @@ import { SAISONS, type Saison } from "@/data/catalogue";
 import { createClient } from "@/lib/supabase/client";
 import type { Tenue } from "./tenues";
 
-// Favoris de Nuance (tenues aimées et pièces favorites).
+// Favoris de Charmes (tenues aimées et pièces favorites).
 // Le téléphone garde toujours une copie (localStorage) : ça marche sans compte et sans réseau.
 // Si la personne est connectée, chaque changement est aussi enregistré dans son compte (Supabase, RLS),
 // et synchroniser() fusionne les deux au chargement.

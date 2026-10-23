@@ -1,4 +1,4 @@
-// Catalogue de Nuance : des « pièces types » précises, sans prix ni code article inventé.
+// Catalogue de Charmes : des « pièces types » précises, sans prix ni code article inventé.
 // La couleur n'est pas figée : elle vient de la palette de la personne.
 //  - pièces portées près du visage (hauts, robes, pièces en plus) → couleurs phares de la palette ;
 //  - pièces portées loin du visage (bas, chaussures) → neutres de la palette + couleurs « loin du visage ».

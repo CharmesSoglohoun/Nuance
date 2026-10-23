@@ -14,12 +14,12 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Nuance · Les couleurs qui te vont",
+  title: "Charmes · Les couleurs qui te vont",
   description: "Les couleurs qui te vont, la tenue de la saison, et où la trouver.",
-  applicationName: "Nuance",
+  applicationName: "Charmes",
   // Prototype en cours de construction : pas d'indexation par les moteurs de recherche.
   robots: { index: false, follow: false },
-  appleWebApp: { capable: true, title: "Nuance", statusBarStyle: "default" },
+  appleWebApp: { capable: true, title: "Charmes", statusBarStyle: "default" },
 };
 
 export const viewport: Viewport = {

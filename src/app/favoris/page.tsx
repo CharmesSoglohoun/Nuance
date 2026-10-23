@@ -1,7 +1,7 @@
 import { BarreNavigation } from "@/components/BarreNavigation";
 import { Favoris } from "./Favoris";
 
-export const metadata = { title: "Favoris · Nuance" };
+export const metadata = { title: "Favoris · Charmes" };
 
 export default function PageFavoris() {
   return (

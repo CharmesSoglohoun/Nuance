@@ -1,4 +1,4 @@
-# Nuance
+# Charmes
 
 Application web (installable sur téléphone) de conseil en style : les couleurs qui te vont selon ton teint et ton sous-ton, la tenue de la saison sur un mannequin personnalisé, et des références précises pour trouver chaque pièce. Hommes et femmes, peaux noires comme peaux blanches.
 

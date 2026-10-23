@@ -1,4 +1,4 @@
-// Palettes de couleurs de Nuance : 4 profondeurs de teint × 3 sous-tons = 12 palettes.
+// Palettes de couleurs de Charmes : 4 profondeurs de teint × 3 sous-tons = 12 palettes.
 // Principes (cahier des charges, section 7) :
 //  - plus le teint est profond, plus les couleurs franches, saturées et lumineuses le mettent en valeur ;
 //  - sur un teint clair, les couleurs douces et nuancées évitent de « durcir » le visage ;

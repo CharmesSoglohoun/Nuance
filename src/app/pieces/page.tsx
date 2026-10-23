@@ -1,7 +1,7 @@
 import { BarreNavigation } from "@/components/BarreNavigation";
 import { ListePieces } from "./ListePieces";
 
-export const metadata = { title: "Tes pièces de saison · Nuance" };
+export const metadata = { title: "Tes pièces de saison · Charmes" };
 
 export default function Pieces() {
   return (

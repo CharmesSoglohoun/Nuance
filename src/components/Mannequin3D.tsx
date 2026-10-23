@@ -1,6 +1,6 @@
 "use client";
 
-// Mannequin 3D stylisé de Nuance, construit entièrement en code (three.js via React Three Fiber).
+// Mannequin 3D stylisé de Charmes, construit entièrement en code (three.js via React Three Fiber).
 // Formes douces, sans visage détaillé (comme dans le design). Il s'adapte à :
 //  - la taille et la silhouette (largeur des épaules, de la taille, des hanches) ;
 //  - le teint (couleur de la peau) ;
